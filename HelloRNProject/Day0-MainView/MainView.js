@@ -4,47 +4,40 @@ import React, { Component } from 'react';
 import { 
     NavigatorIOS, Text, View,TouchableHighlight,StyleSheet
  } from "react-native";
+import {
+  StackNavigator,
+} from 'react-navigation';
+import DayListView from "./DayListView";
 
+const MainView = () => (
+  <View style={styles.container}>
+  {<DayListView  style={styles.welcome}/>}
+</View>
+);
 
- export default class NavigatorIOSApp extends Component {
-    render() {
-      return (
-        <NavigatorIOS
-          initialRoute={{
-            component: MainView,
-            title: 'Hello RN for day N ',
-            // navigationBarHidden:true,
-          }}
-          style={{flex: 1}}
-        />
-      );
+const main = StackNavigator({
+  Home: { 
+    screen: MainView,
+    navigationOptions: {
+      headerTitle: 'Hello RN for day N ',
     }
   }
+});
 
- class MainView extends Component {
-    render() {
-        return (
-          <View style={styles.container}>
-            <TouchableHighlight>
-              <Text > Hello, RN</Text>
-            </TouchableHighlight> 
-          </View>
-        );
-    }
- }
+export default main;
 
 // ====================== style sheet ====================
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFF',
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10 ,
+    width: 100,
+    height: 100
   },
   instructions: {
     textAlign: 'center',
